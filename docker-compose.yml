@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  app-deploy:
+    image: local/act
+    build:
+      dockerfile: .docker/images/act.Dockerfile
+    profiles: ['deploy']
+    working_dir: /act
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - .:/act
+      - .docker/.actrc:/root/.actrc
